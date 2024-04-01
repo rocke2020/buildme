@@ -12,6 +12,7 @@ practices.
 ```
 docker build --tag hello-py .
 docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py
+docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output -v /home/qcdong/codes/peptide-deploy/alphafold_design/args:/src/app/args hello-py --args_file app/args/PRL.yml
 docker run -it --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py /bin/bash
 ```
 

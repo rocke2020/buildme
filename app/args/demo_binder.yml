@@ -1,0 +1,25 @@
+# [0, 1, 3, 6]
+num_recycles: 3
+recycle_mode: "sample"
+num_models: 5
+use_multimer: True
+
+threshold_plddt: 70
+threshold_complex_score: 0.7
+max_loop_count: 100
+
+# "pssm_semigreedy", "3stage", "semigreedy", "pssm", "logits", "soft", "hard"
+optimizer_protocol: "pssm_semigreedy"
+soft_iters: 120
+hard_iters: 32
+# "adabelief", "adafactor", "adagrad", "adam", "adamw", "fromage", "lamb", "lars", "noisy_sgd", "dpsgd", "radam", "rmsprop", "sgd", "sm3", "yogi"
+gd_method: "sgd"
+learning_rate: 0.05
+norm_seq_grad: True
+dropout: True
+
+peptide_chain_id: B
+
+select_peptides_at_the_right_site: false
+
+af_data_path: "/mnt/sda/alphafold/af_data"

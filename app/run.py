@@ -1,4 +1,6 @@
+import argparse
 import json
+import logging
 import math
 import os
 import random
@@ -6,11 +8,14 @@ import re
 import shutil
 import sys
 import time
+import warnings
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
-import datetime
-import logging
+
+warnings.simplefilter(action="ignore", category=FutureWarning)
+sys.path.append(os.path.abspath("."))
+
 
 logger = logging.getLogger()
 logging.basicConfig(
@@ -20,10 +25,16 @@ logging.basicConfig(
 )
 
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--args_file", default="app/args/demo_binder.yml")
+raw_args = parser.parse_args()
+
+
 SEED = 0
 random.seed(SEED)
-logger.info(f'{datetime.datetime.now() = }')
+logger.info(f"{datetime.now() = }")
 with open("output/1.txt", "w", encoding="utf-8") as f:
-    f.write(f"{datetime.datetime.now()}\n")
+    f.write(f"{datetime.now()}\n")
+    f.write(f"{raw_args.args_file}\n")
 
-logger.info(f"{SEED = }")
+logger.info('end')
