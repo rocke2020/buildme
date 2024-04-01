@@ -1,8 +1,6 @@
 # syntax=docker/dockerfile:1
-FROM golang:1.20-alpine
+FROM python:3.10
 WORKDIR /src
 COPY . .
-RUN go mod download
-RUN go build -o /bin/client ./cmd/client
-RUN go build -o /bin/server ./cmd/server
-ENTRYPOINT [ "/bin/server" ]
+# RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+CMD ["python", "app/run.py"]
