@@ -10,34 +10,15 @@ practices.
 ## Python
 ### quick start
 ```
+# first run
+sudo docker run hello-world
+
 docker build --tag hello-py .
 docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py
-docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output -v /home/qcdong/codes/peptide-deploy/alphafold_design/args:/src/app/args hello-py --args_file app/args/PRL.yml
+docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output -v /home/qcdong/codes/peptide-deploy/alphafold_design/args:/src/app/args hello-py python app/run.py --args_file app/args/PRL.yml
 docker run -it --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py /bin/bash
+
+# check gpu
+docker run --gpus all --rm nvidia/cuda:11.8.0-base-ubi8 nvidia-smi
+docker run -it --rm pytorch/pytorch:2.2.0-cuda11.8-cudnn8-runtime /bin/bash
 ```
-
-## In this repository
-
-You'll find the Go source code for the application in the `cmd` directory. For
-the purpose of the Build guide, there's no need to understand or interact with
-the source code in any way. The guide only refers to Dockerfile changes.
-
-The `Dockerfile` in the root directory of this project is the starting point for
-this guide. It contains the unmodified version.
-
-The `chapters` directory contains the finished Dockerfile examples for each
-section of the guide. The sections are enumerated 1-8, and the Dockerfiles in
-this directory are named after the section that they correspond to.
-
-## Tasks
-
-This repository implements [Task](https://taskfile.dev/) to make it easier to
-switch between stages, or reset Dockerfile.
-
-To reset your Dockerfile to a specific stage, install Task and run
-`task goto:<stage>`. This overwrites the contents of the Dockerfile to the
-**finished version** of the selected stage.
-
-For example, running `task goto:1` resets the Dockerfile the starting point of
-the guide. Running `task goto:4` resets the Dockerfile to reflect the **finished
-version** of the 4th section of the guide.
