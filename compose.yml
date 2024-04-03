@@ -1,0 +1,15 @@
+services:
+  afd:
+    image: "afd:1.2"
+    container_name: afd
+    command: python alphafold_design/run.py --args_file /src/alphafold_design/args/args.yml
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['3']
+              capabilities: [gpu]
+    volumes:
+      - /mnt/sda/alphafold/af_data:/mnt/sda/alphafold/af_data
+      - /mnt/nas1/software/nvidia/libnvrtc.so.11.8.89:/usr/local/lib/python3.10/site-packages/nvidia/cudnn/lib/libnvrtc.so

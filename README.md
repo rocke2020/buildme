@@ -14,11 +14,14 @@ practices.
 sudo docker run hello-world
 
 docker build --tag hello-py .
-docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py
+docker run -d -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py
 docker run -d --rm -v /mnt/nas1/dong-qichang/tmp:/src/output -v /home/qcdong/codes/peptide-deploy/alphafold_design/args:/src/app/args hello-py python app/run.py --args_file app/args/PRL.yml
+
+# debug
 docker run -it --rm -v /mnt/nas1/dong-qichang/tmp:/src/output hello-py /bin/bash
 
 # check gpu
 docker run --gpus all --rm nvidia/cuda:11.8.0-base-ubi8 nvidia-smi
-docker run -it --rm pytorch/pytorch:2.2.0-cuda11.8-cudnn8-runtime /bin/bash
+# debug
+docker run -it --rm pytorch/pytorch:2.2.0-cuda11.8-cudnn8-devel /bin/bash
 ```
